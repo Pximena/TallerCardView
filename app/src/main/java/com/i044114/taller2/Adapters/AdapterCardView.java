@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.i044114.taller2.Models.CardView;
 import com.i044114.taller2.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +40,10 @@ public class AdapterCardView extends RecyclerView.Adapter<AdapterCardView.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
 // Encargado de trabajar con el item.xml y sus componentes
         holder.textViewtitulo.setText(countryList.get(position).getTitulo());
-        holder.textViewurl.setText(countryList.get(position).getUrl());
+
         holder.textViewurltext.setText(countryList.get(position).getUrltext());
+
+        Picasso.with(context).load(countryList.get(position).getUrltext()).into(holder.imageView);
     }
     @Override
     public int getItemCount() {
@@ -47,13 +51,13 @@ public class AdapterCardView extends RecyclerView.Adapter<AdapterCardView.ViewHo
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textViewtitulo;
-        TextView textViewurl;
+        ImageView imageView;
         TextView textViewurltext;
         public ViewHolder(View item) {
             super(item);
             textViewtitulo = (TextView) item.findViewById(R.id.id_tv_item_cv_user);
-            textViewurl = (TextView) item.findViewById(R.id.id_tv_item_namecapital);
-            textViewurltext = (TextView) item.findViewById(R.id.id_tv_item_nameabbreviation);
+            imageView = (ImageView) item.findViewById(R.id.id_img_item_cardview);
+            textViewurltext = (TextView) item.findViewById(R.id.id_tv_item_cv_des);
         }
     }
 }
